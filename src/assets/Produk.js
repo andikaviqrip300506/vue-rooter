@@ -44,7 +44,7 @@ export const produk = {
             'id' : 6,
             "nama" : "Komputer",
             "harga" : "5.000.000",
-            "id_kategori" : 1,
+            "id_kategori" : 2,
             "img" : "pc.jpg",
             "ket" : "PC Apple"
         },

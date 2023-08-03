@@ -9,6 +9,7 @@ import Produk from "@/views/Produk.vue";
 import Kategori from "@/views/Kategori.vue"
 import DetailElektronik from "@/views/DetailElektronik.vue"
 import NotFound from "@/views/NotFound.vue"
+import Login from "@/views/Login.vue"
 
 const routes = [ 
   {
@@ -35,11 +36,25 @@ const routes = [
     path: "/produk",
     name: "Produk",
     component: Produk,
+    beforeEnter: (to, from, next) => {
+      const loggedInUser = true;
+      if (loggedInUser) {
+        next(); // Lanjutkan navigasi ke halaman produk jika sudah login
+      } else {
+        next("/login"); // Alihkan ke halaman login jika belum login
+      }
+    },
   },
   {
     path: "/kategori",
     name: "Kategori",
     component: Kategori,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    props: true
   },
   {
     path: "/:pathMacth(.*)*",
@@ -62,12 +77,15 @@ const routes = [
     name: "DetailE",
     component: DetailElektronik,
     props: true
-  }
+  },
+ 
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+
 
 export default router;
